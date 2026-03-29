@@ -1,0 +1,19 @@
+{
+  "pass": 1,
+  "actors": [
+    {"id": "actor:contributor", "label": "Contributor", "evidence": "Human interaction with repository implied by git workflow; no app user in code."}
+  ],
+  "externals": [
+    {"id": "ext:npm_registry", "label": "npm registry", "evidence": ".gitignore references node_modules, npm-debug.log, package ecosystem."}
+  ],
+  "deployables": [],
+  "excluded": [
+    {"id": "candidate:runtime_entrypoint", "reason": "No application entrypoint, server, or process model in committed source."},
+    {"id": "candidate:ci_workflow", "reason": "No .github/workflows or other CI definitions in committed tree."},
+    {"id": "candidate:container_image", "reason": "No Dockerfile or container manifest in committed tree."}
+  ],
+  "edges": [
+    {"id": "edge:e1", "from": "actor:contributor", "to": "ext:npm_registry", "relationship": "consumes_packages"}
+  ],
+  "seq_max": 9
+}
