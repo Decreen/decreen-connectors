@@ -16,3 +16,12 @@
 {"seq":16,"pass":2,"event":"add_edge","payload":{"id":"edge:maintainer_changes_repo","from":"actor:maintainer","to":"sys:connectors_repo","label":"Maintains"}}
 {"seq":17,"pass":2,"event":"group_nodes","payload":{"id":"group:pass2-l2","label":"Pass 2 containers","members":["sys:connectors_repo","container:source_tree"]}}
 {"seq":18,"pass":2,"event":"freeze_pass","payload":{"pass":2,"label":"L2 containers frozen"}}
+{"seq":19,"pass":3,"event":"add_component","payload":{"id":"component:vcs_ignore_policy","label":"VCS ignore policy","parent":"container:source_tree","kinds":["boundary","storage"]}}
+{"seq":20,"pass":3,"event":"add_component","payload":{"id":"component:license_terms","label":"License terms bundle","parent":"container:source_tree","kinds":["integration","storage"]}}
+{"seq":21,"pass":3,"event":"add_component","payload":{"id":"component:declared_dependencies","label":"Declared dependency manifests (none present)","parent":"container:source_tree","kinds":["integration","boundary"]}}
+{"seq":22,"pass":3,"event":"exclude_candidate","payload":{"candidate":"Additional L3 container targets","reason":"Only one deployable container identified in Pass 2"}}
+{"seq":23,"pass":3,"event":"add_edge","payload":{"id":"edge:src_contains_ignore","from":"container:source_tree","to":"component:vcs_ignore_policy","label":"Defines"}}
+{"seq":24,"pass":3,"event":"add_edge","payload":{"id":"edge:src_contains_license","from":"container:source_tree","to":"component:license_terms","label":"Includes"}}
+{"seq":25,"pass":3,"event":"add_edge","payload":{"id":"edge:src_contains_manifests","from":"container:source_tree","to":"component:declared_dependencies","label":"Would host"}}
+{"seq":26,"pass":3,"event":"group_nodes","payload":{"id":"group:pass3-l3","label":"L3 inside container:source_tree","members":["component:vcs_ignore_policy","component:license_terms","component:declared_dependencies"]}}
+{"seq":27,"pass":3,"event":"freeze_pass","payload":{"pass":3,"label":"L3 selection frozen"}}
