@@ -1,0 +1,28 @@
+{"seq":1,"pass":0,"event":"group_nodes","payload":{"id":"group:bootstrap","label":"C4 generation bootstrap","members":[]}}
+{"seq":2,"pass":1,"event":"add_actor","payload":{"id":"actor:integrator","label":"Integrator"}}
+{"seq":3,"pass":1,"event":"add_actor","payload":{"id":"actor:maintainer","label":"Maintainer"}}
+{"seq":4,"pass":1,"event":"add_external","payload":{"id":"ext:git_remote","label":"Git hosting"}}
+{"seq":5,"pass":1,"event":"exclude_candidate","payload":{"candidate":"Runnable application or service process","reason":"No package.json, Dockerfile, compose file, or CI workflow in tracked workspace files"}}
+{"seq":6,"pass":1,"event":"group_nodes","payload":{"id":"group:pass1-runtime","label":"Pass 1 runtime inventory","members":["actor:integrator","actor:maintainer","ext:git_remote"]}}
+{"seq":7,"pass":1,"event":"add_edge","payload":{"id":"edge:integrator_git","from":"actor:integrator","to":"ext:git_remote","label":"Clone / pull"}}
+{"seq":8,"pass":1,"event":"add_edge","payload":{"id":"edge:maintainer_git","from":"actor:maintainer","to":"ext:git_remote","label":"Push / maintain"}}
+{"seq":9,"pass":1,"event":"freeze_pass","payload":{"pass":1,"label":"Runtime inventory frozen"}}
+{"seq":10,"pass":2,"event":"set_system_boundary","payload":{"id":"sys:connectors_repo","label":"Decreen connectors repository"}}
+{"seq":11,"pass":2,"event":"add_container","payload":{"id":"container:source_tree","label":"Version-controlled source tree","parent":"sys:connectors_repo"}}
+{"seq":12,"pass":2,"event":"exclude_candidate","payload":{"candidate":"HTTP API service","reason":"No server entrypoints or HTTP routes in tracked source"}}
+{"seq":13,"pass":2,"event":"exclude_candidate","payload":{"candidate":"CI/CD pipeline runtime","reason":"No .github/workflows or other CI config in tracked files"}}
+{"seq":14,"pass":2,"event":"add_edge","payload":{"id":"edge:git_hosts_system","from":"ext:git_remote","to":"sys:connectors_repo","label":"Hosts"}}
+{"seq":15,"pass":2,"event":"add_edge","payload":{"id":"edge:integrator_uses_repo","from":"actor:integrator","to":"sys:connectors_repo","label":"Consumes"}}
+{"seq":16,"pass":2,"event":"add_edge","payload":{"id":"edge:maintainer_changes_repo","from":"actor:maintainer","to":"sys:connectors_repo","label":"Maintains"}}
+{"seq":17,"pass":2,"event":"group_nodes","payload":{"id":"group:pass2-l2","label":"Pass 2 containers","members":["sys:connectors_repo","container:source_tree"]}}
+{"seq":18,"pass":2,"event":"freeze_pass","payload":{"pass":2,"label":"L2 containers frozen"}}
+{"seq":19,"pass":3,"event":"add_component","payload":{"id":"component:vcs_ignore_policy","label":"VCS ignore policy","parent":"container:source_tree","kinds":["boundary","storage"]}}
+{"seq":20,"pass":3,"event":"add_component","payload":{"id":"component:license_terms","label":"License terms bundle","parent":"container:source_tree","kinds":["integration","storage"]}}
+{"seq":21,"pass":3,"event":"add_component","payload":{"id":"component:declared_dependencies","label":"Declared dependency manifests (none present)","parent":"container:source_tree","kinds":["integration","boundary"]}}
+{"seq":22,"pass":3,"event":"exclude_candidate","payload":{"candidate":"Additional L3 container targets","reason":"Only one deployable container identified in Pass 2"}}
+{"seq":23,"pass":3,"event":"add_edge","payload":{"id":"edge:src_contains_ignore","from":"container:source_tree","to":"component:vcs_ignore_policy","label":"Defines"}}
+{"seq":24,"pass":3,"event":"add_edge","payload":{"id":"edge:src_contains_license","from":"container:source_tree","to":"component:license_terms","label":"Includes"}}
+{"seq":25,"pass":3,"event":"add_edge","payload":{"id":"edge:src_contains_manifests","from":"container:source_tree","to":"component:declared_dependencies","label":"Would host"}}
+{"seq":26,"pass":3,"event":"group_nodes","payload":{"id":"group:pass3-l3","label":"L3 inside container:source_tree","members":["component:vcs_ignore_policy","component:license_terms","component:declared_dependencies"]}}
+{"seq":27,"pass":3,"event":"freeze_pass","payload":{"pass":3,"label":"L3 selection frozen"}}
+{"seq":28,"pass":4,"event":"freeze_pass","payload":{"pass":4,"label":"Final render frozen"}}

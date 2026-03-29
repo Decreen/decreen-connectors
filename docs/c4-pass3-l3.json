@@ -1,0 +1,51 @@
+{
+  "pass": 3,
+  "selected_containers": ["container:source_tree"],
+  "components": [
+    {
+      "id": "component:vcs_ignore_policy",
+      "label": "VCS ignore policy",
+      "parent": "container:source_tree",
+      "kinds": ["boundary", "storage"]
+    },
+    {
+      "id": "component:license_terms",
+      "label": "License terms bundle",
+      "parent": "container:source_tree",
+      "kinds": ["integration", "storage"]
+    },
+    {
+      "id": "component:declared_dependencies",
+      "label": "Declared dependency manifests (none present)",
+      "parent": "container:source_tree",
+      "kinds": ["integration", "boundary"]
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:src_contains_ignore",
+      "from": "container:source_tree",
+      "to": "component:vcs_ignore_policy",
+      "label": "Defines"
+    },
+    {
+      "id": "edge:src_contains_license",
+      "from": "container:source_tree",
+      "to": "component:license_terms",
+      "label": "Includes"
+    },
+    {
+      "id": "edge:src_contains_manifests",
+      "from": "container:source_tree",
+      "to": "component:declared_dependencies",
+      "label": "Would host"
+    }
+  ],
+  "excluded": [
+    {
+      "candidate": "Additional L3 container targets",
+      "reason": "Only one deployable container identified in Pass 2"
+    }
+  ],
+  "seq_max": 27
+}
