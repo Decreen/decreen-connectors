@@ -25,3 +25,4 @@
 {"seq":25,"pass":3,"event":"add_edge","payload":{"id":"edge:src_contains_manifests","from":"container:source_tree","to":"component:declared_dependencies","label":"Would host"}}
 {"seq":26,"pass":3,"event":"group_nodes","payload":{"id":"group:pass3-l3","label":"L3 inside container:source_tree","members":["component:vcs_ignore_policy","component:license_terms","component:declared_dependencies"]}}
 {"seq":27,"pass":3,"event":"freeze_pass","payload":{"pass":3,"label":"L3 selection frozen"}}
+{"seq":28,"pass":4,"event":"freeze_pass","payload":{"pass":4,"label":"Final render frozen"}}
