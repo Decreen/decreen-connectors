@@ -1,0 +1,44 @@
+{
+  "pass": 3,
+  "selected_containers": [
+    {
+      "id": "container:repository_workspace",
+      "components": [
+        {
+          "id": "component:ignore_policy_surface",
+          "label": "Ignore policy surface",
+          "kind": "boundary",
+          "dimensions": ["state", "subsystems"],
+          "rationale": ".gitignore defines exclusion policies across logs, build outputs, dependency dirs, and tool caches."
+        },
+        {
+          "id": "component:versioned_tree_surface",
+          "label": "Versioned tree surface",
+          "kind": "storage",
+          "dimensions": ["state", "subsystems"],
+          "rationale": "Git-tracked files (e.g. LICENSE, .gitignore) are the durable state surface of the workspace."
+        }
+      ]
+    },
+    {
+      "id": "container:npm_toolchain_surface",
+      "components": [
+        {
+          "id": "component:registry_resolution_surface",
+          "label": "Registry resolution surface",
+          "kind": "integration",
+          "dimensions": ["routing", "API"],
+          "rationale": "Ignore patterns for node_modules and npm logs imply package resolution against a registry API."
+        },
+        {
+          "id": "component:local_install_tree_surface",
+          "label": "Local install tree surface",
+          "kind": "storage",
+          "dimensions": ["state", "subsystems"],
+          "rationale": "node_modules and related paths are the local materialization of dependencies (ignored, not committed)."
+        }
+      ]
+    }
+  ],
+  "seq_max": 30
+}
