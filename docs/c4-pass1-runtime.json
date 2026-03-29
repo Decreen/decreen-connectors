@@ -1,0 +1,17 @@
+{
+  "pass": 1,
+  "evidence_scope": "code_only",
+  "actors": [
+    {"id": "actor:integrator", "label": "Connector integrator", "evidence": "repository name decreen-connectors (remote URL path)"},
+    {"id": "actor:maintainer", "label": "Repository maintainer", "evidence": "git repository presence"}
+  ],
+  "externals": [
+    {"id": "ext:github", "label": "GitHub", "evidence": ".git/config remote origin URL host"},
+    {"id": "ext:npm_ecosystem", "label": "Node/npm/Yarn ecosystem", "evidence": ".gitignore patterns (node_modules, npm, yarn, vite, next, etc.)"}
+  ],
+  "deployables": [],
+  "excluded": [
+    {"id": "exclude:deployable_runtime", "reason": "No runnable service or library package manifest in tree"}
+  ],
+  "event_seq_range": [2, 9]
+}

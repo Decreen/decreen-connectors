@@ -1,1 +1,9 @@
 {"seq":1,"pass":0,"event":"group_nodes","payload":{"id":"group:bootstrap","label":"C4 generation bootstrap","members":[]}}
+{"seq":2,"pass":1,"event":"add_actor","payload":{"id":"actor:integrator","label":"Connector integrator"}}
+{"seq":3,"pass":1,"event":"add_actor","payload":{"id":"actor:maintainer","label":"Repository maintainer"}}
+{"seq":4,"pass":1,"event":"add_external","payload":{"id":"ext:github","label":"GitHub"}}
+{"seq":5,"pass":1,"event":"add_external","payload":{"id":"ext:npm_ecosystem","label":"Node/npm/Yarn ecosystem"}}
+{"seq":6,"pass":1,"event":"group_nodes","payload":{"id":"group:pass1-runtime","label":"Pass 1 runtime inventory","members":["actor:integrator","actor:maintainer","ext:github","ext:npm_ecosystem"]}}
+{"seq":7,"pass":1,"event":"exclude_candidate","payload":{"id":"exclude:deployable_runtime","reason":"No application source, package manifest, Dockerfile, or CI workflow files present in workspace tree"}}
+{"seq":8,"pass":1,"event":"add_edge","payload":{"id":"edge:maintainer_github","from":"actor:maintainer","to":"ext:github","label":"git operations"}}
+{"seq":9,"pass":1,"event":"freeze_pass","payload":{"pass":1}}
