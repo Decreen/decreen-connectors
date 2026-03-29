@@ -1,0 +1,21 @@
+{
+  "pass": 2,
+  "system_boundary": {
+    "id": "sys:decreen_connectors",
+    "label": "Decreen Connectors",
+    "evidence": "remote origin path decreen-connectors in .git/config"
+  },
+  "containers": [
+    {
+      "id": "container:local_repo_workspace",
+      "label": "Local repository workspace",
+      "evidence": "git repository with tracked tree; no separate deployable process identified"
+    }
+  ],
+  "excluded": [
+    {"id": "exclude:ci_runtime", "reason": "No .github or CI workflow files in tree"},
+    {"id": "exclude:container_image", "reason": "No Dockerfile in tree"},
+    {"id": "exclude:npm_package_app", "reason": "No package.json in tree"}
+  ],
+  "event_seq_range": [10, 18]
+}

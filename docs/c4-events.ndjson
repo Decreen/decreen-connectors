@@ -7,3 +7,12 @@
 {"seq":7,"pass":1,"event":"exclude_candidate","payload":{"id":"exclude:deployable_runtime","reason":"No application source, package manifest, Dockerfile, or CI workflow files present in workspace tree"}}
 {"seq":8,"pass":1,"event":"add_edge","payload":{"id":"edge:maintainer_github","from":"actor:maintainer","to":"ext:github","label":"git operations"}}
 {"seq":9,"pass":1,"event":"freeze_pass","payload":{"pass":1}}
+{"seq":10,"pass":2,"event":"set_system_boundary","payload":{"id":"sys:decreen_connectors","label":"Decreen Connectors"}}
+{"seq":11,"pass":2,"event":"add_container","payload":{"id":"container:local_repo_workspace","label":"Local repository workspace"}}
+{"seq":12,"pass":2,"event":"exclude_candidate","payload":{"id":"exclude:ci_runtime","reason":".github/workflows and CI configs absent from workspace"}}
+{"seq":13,"pass":2,"event":"exclude_candidate","payload":{"id":"exclude:container_image","reason":"No Dockerfile or container build files in workspace"}}
+{"seq":14,"pass":2,"event":"exclude_candidate","payload":{"id":"exclude:npm_package_app","reason":"No package.json or lockfiles present as application entry"}}
+{"seq":15,"pass":2,"event":"add_edge","payload":{"id":"edge:maintainer_workspace","from":"actor:maintainer","to":"container:local_repo_workspace","label":"edit working tree"}}
+{"seq":16,"pass":2,"event":"add_edge","payload":{"id":"edge:workspace_remote","from":"container:local_repo_workspace","to":"ext:github","label":"git remote sync"}}
+{"seq":17,"pass":2,"event":"add_edge","payload":{"id":"edge:integrator_github","from":"actor:integrator","to":"ext:github","label":"obtain repository"}}
+{"seq":18,"pass":2,"event":"freeze_pass","payload":{"pass":2}}
