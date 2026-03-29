@@ -7,3 +7,13 @@
 {"seq":7,"pass":1,"event":"group_nodes","payload":{"id":"group:pass1_runtime","label":"Pass 1 runtime inventory","members":["actor:contributor","ext:npm_registry"]}}
 {"seq":8,"pass":1,"event":"add_edge","payload":{"id":"edge:e1","from":"actor:contributor","to":"ext:npm_registry","relationship":"consumes_packages"}}
 {"seq":9,"pass":1,"event":"freeze_pass","payload":{"pass":1}}
+{"seq":10,"pass":2,"event":"set_system_boundary","payload":{"id":"sys:decreen_connectors","label":"Decreen connectors repository workspace"}}
+{"seq":11,"pass":2,"event":"add_container","payload":{"id":"container:repository_workspace","label":"Git-tracked workspace","technology":"filesystem"}}
+{"seq":12,"pass":2,"event":"add_container","payload":{"id":"container:npm_toolchain_surface","label":"npm or Yarn dependency surface","technology":"Node package ecosystem"}}
+{"seq":13,"pass":2,"event":"exclude_candidate","payload":{"id":"candidate:api_gateway","reason":"No HTTP server, routes, or API code in committed source."}}
+{"seq":14,"pass":2,"event":"exclude_candidate","payload":{"id":"candidate:message_broker","reason":"No broker client or queue configuration in committed source."}}
+{"seq":15,"pass":2,"event":"add_edge","payload":{"id":"edge:e4","from":"sys:decreen_connectors","to":"container:repository_workspace","relationship":"contains"}}
+{"seq":16,"pass":2,"event":"add_edge","payload":{"id":"edge:e5","from":"sys:decreen_connectors","to":"container:npm_toolchain_surface","relationship":"contains"}}
+{"seq":17,"pass":2,"event":"add_edge","payload":{"id":"edge:e2","from":"actor:contributor","to":"sys:decreen_connectors","relationship":"develops"}}
+{"seq":18,"pass":2,"event":"add_edge","payload":{"id":"edge:e3","from":"sys:decreen_connectors","to":"ext:npm_registry","relationship":"resolves_dependencies_via"}}
+{"seq":19,"pass":2,"event":"freeze_pass","payload":{"pass":2}}

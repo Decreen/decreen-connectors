@@ -1,0 +1,13 @@
+{
+  "pass": 2,
+  "system": {"id": "sys:decreen_connectors", "label": "Decreen connectors repository workspace"},
+  "containers": [
+    {"id": "container:repository_workspace", "label": "Git-tracked workspace", "technology": "filesystem"},
+    {"id": "container:npm_toolchain_surface", "label": "npm or Yarn dependency surface", "technology": "Node package ecosystem"}
+  ],
+  "excluded": [
+    {"id": "candidate:api_gateway", "reason": "No HTTP server, routes, or API code in committed source."},
+    {"id": "candidate:message_broker", "reason": "No broker client or queue configuration in committed source."}
+  ],
+  "seq_max": 19
+}
