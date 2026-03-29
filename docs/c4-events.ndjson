@@ -7,3 +7,12 @@
 {"seq":7,"pass":1,"event":"add_edge","payload":{"id":"edge:integrator_git","from":"actor:integrator","to":"ext:git_remote","label":"Clone / pull"}}
 {"seq":8,"pass":1,"event":"add_edge","payload":{"id":"edge:maintainer_git","from":"actor:maintainer","to":"ext:git_remote","label":"Push / maintain"}}
 {"seq":9,"pass":1,"event":"freeze_pass","payload":{"pass":1,"label":"Runtime inventory frozen"}}
+{"seq":10,"pass":2,"event":"set_system_boundary","payload":{"id":"sys:connectors_repo","label":"Decreen connectors repository"}}
+{"seq":11,"pass":2,"event":"add_container","payload":{"id":"container:source_tree","label":"Version-controlled source tree","parent":"sys:connectors_repo"}}
+{"seq":12,"pass":2,"event":"exclude_candidate","payload":{"candidate":"HTTP API service","reason":"No server entrypoints or HTTP routes in tracked source"}}
+{"seq":13,"pass":2,"event":"exclude_candidate","payload":{"candidate":"CI/CD pipeline runtime","reason":"No .github/workflows or other CI config in tracked files"}}
+{"seq":14,"pass":2,"event":"add_edge","payload":{"id":"edge:git_hosts_system","from":"ext:git_remote","to":"sys:connectors_repo","label":"Hosts"}}
+{"seq":15,"pass":2,"event":"add_edge","payload":{"id":"edge:integrator_uses_repo","from":"actor:integrator","to":"sys:connectors_repo","label":"Consumes"}}
+{"seq":16,"pass":2,"event":"add_edge","payload":{"id":"edge:maintainer_changes_repo","from":"actor:maintainer","to":"sys:connectors_repo","label":"Maintains"}}
+{"seq":17,"pass":2,"event":"group_nodes","payload":{"id":"group:pass2-l2","label":"Pass 2 containers","members":["sys:connectors_repo","container:source_tree"]}}
+{"seq":18,"pass":2,"event":"freeze_pass","payload":{"pass":2,"label":"L2 containers frozen"}}

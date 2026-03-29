@@ -1,0 +1,45 @@
+{
+  "pass": 2,
+  "system": {
+    "id": "sys:connectors_repo",
+    "label": "Decreen connectors repository"
+  },
+  "containers": [
+    {
+      "id": "container:source_tree",
+      "label": "Version-controlled source tree",
+      "parent": "sys:connectors_repo"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:git_hosts_system",
+      "from": "ext:git_remote",
+      "to": "sys:connectors_repo",
+      "label": "Hosts"
+    },
+    {
+      "id": "edge:integrator_uses_repo",
+      "from": "actor:integrator",
+      "to": "sys:connectors_repo",
+      "label": "Consumes"
+    },
+    {
+      "id": "edge:maintainer_changes_repo",
+      "from": "actor:maintainer",
+      "to": "sys:connectors_repo",
+      "label": "Maintains"
+    }
+  ],
+  "excluded": [
+    {
+      "candidate": "HTTP API service",
+      "reason": "No server entrypoints or HTTP routes in tracked source"
+    },
+    {
+      "candidate": "CI/CD pipeline runtime",
+      "reason": "No .github/workflows or other CI config in tracked files"
+    }
+  ],
+  "seq_max": 18
+}
