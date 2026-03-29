@@ -5,7 +5,7 @@ flowchart TB
   subgraph L1["L1 System context"]
     actor_contributor["actor:contributor<br/>Contributor"]
     ext_npm["ext:npm_registry<br/>npm registry"]
-    sys_dc["sys:decreen_connectors<br/>Decreen connectors repository workspace"]
+    sys_dc["sys:decreen_connectors<br/>Decreen connectors (repository-only workspace)"]
   end
   subgraph L2["L2 Containers"]
     c_repo["container:repository_workspace<br/>Git-tracked workspace"]

@@ -28,3 +28,5 @@
 {"seq":28,"pass":3,"event":"add_edge","payload":{"id":"edge:e10","from":"component:registry_resolution_surface","to":"ext:npm_registry","relationship":"uses"}}
 {"seq":29,"pass":3,"event":"exclude_candidate","payload":{"id":"candidate:l3_fifth_container","reason":"Only two L2 containers exist in the frozen model; max four selection applies to available containers only."}}
 {"seq":30,"pass":3,"event":"freeze_pass","payload":{"pass":3}}
+{"seq":31,"pass":4,"event":"refine_label","payload":{"id":"sys:decreen_connectors","label":"Decreen connectors (repository-only workspace)"}}
+{"seq":32,"pass":4,"event":"freeze_pass","payload":{"pass":4}}
