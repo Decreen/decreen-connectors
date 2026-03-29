@@ -16,3 +16,9 @@
 {"seq":16,"pass":2,"event":"add_edge","payload":{"id":"edge:workspace_remote","from":"container:local_repo_workspace","to":"ext:github","label":"git remote sync"}}
 {"seq":17,"pass":2,"event":"add_edge","payload":{"id":"edge:integrator_github","from":"actor:integrator","to":"ext:github","label":"obtain repository"}}
 {"seq":18,"pass":2,"event":"freeze_pass","payload":{"pass":2}}
+{"seq":19,"pass":3,"event":"add_component","payload":{"id":"component:git_remote_integration","container_id":"container:local_repo_workspace","label":"Git remote integration","kinds":["integration","routing"]}}
+{"seq":20,"pass":3,"event":"add_component","payload":{"id":"component:repo_ignore_policy","container_id":"container:local_repo_workspace","label":"Repository ignore policy","kinds":["boundary","state"]}}
+{"seq":21,"pass":3,"event":"exclude_candidate","payload":{"id":"exclude:l3_second_container","reason":"Only one L2 container present; Pass 3 selection applies to container:local_repo_workspace only"}}
+{"seq":22,"pass":3,"event":"add_edge","payload":{"id":"edge:git_remote_github","from":"component:git_remote_integration","to":"ext:github","label":"origin remote"}}
+{"seq":23,"pass":3,"event":"add_edge","payload":{"id":"edge:ignore_npm_paths","from":"component:repo_ignore_policy","to":"ext:npm_ecosystem","label":"excludes node_modules and package caches"}}
+{"seq":24,"pass":3,"event":"freeze_pass","payload":{"pass":3}}
