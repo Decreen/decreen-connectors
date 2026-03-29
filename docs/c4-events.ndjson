@@ -22,3 +22,4 @@
 {"seq":22,"pass":3,"event":"add_edge","payload":{"id":"edge:git_remote_github","from":"component:git_remote_integration","to":"ext:github","label":"origin remote"}}
 {"seq":23,"pass":3,"event":"add_edge","payload":{"id":"edge:ignore_npm_paths","from":"component:repo_ignore_policy","to":"ext:npm_ecosystem","label":"excludes node_modules and package caches"}}
 {"seq":24,"pass":3,"event":"freeze_pass","payload":{"pass":3}}
+{"seq":25,"pass":4,"event":"freeze_pass","payload":{"pass":4}}
