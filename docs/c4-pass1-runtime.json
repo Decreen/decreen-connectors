@@ -1,0 +1,30 @@
+{
+  "pass": 1,
+  "actors": [
+    { "id": "actor:integrator", "label": "Integrator" },
+    { "id": "actor:maintainer", "label": "Maintainer" }
+  ],
+  "externals": [{ "id": "ext:git_remote", "label": "Git hosting" }],
+  "deployables": [],
+  "edges": [
+    {
+      "id": "edge:integrator_git",
+      "from": "actor:integrator",
+      "to": "ext:git_remote",
+      "label": "Clone / pull"
+    },
+    {
+      "id": "edge:maintainer_git",
+      "from": "actor:maintainer",
+      "to": "ext:git_remote",
+      "label": "Push / maintain"
+    }
+  ],
+  "excluded": [
+    {
+      "candidate": "Runnable application or service process",
+      "reason": "No package.json, Dockerfile, compose file, or CI workflow in tracked workspace files"
+    }
+  ],
+  "seq_max": 9
+}
