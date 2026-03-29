@@ -1,0 +1,25 @@
+{
+  "pass": 3,
+  "selected_containers": ["container:local_repo_workspace"],
+  "selection_note": "Single L2 container in stream; Pass 3 components scoped to it only",
+  "components": [
+    {
+      "id": "component:git_remote_integration",
+      "container_id": "container:local_repo_workspace",
+      "label": "Git remote integration",
+      "kinds": ["integration", "routing"],
+      "evidence": ".git/config remote origin URL and fetch refspec"
+    },
+    {
+      "id": "component:repo_ignore_policy",
+      "container_id": "container:local_repo_workspace",
+      "label": "Repository ignore policy",
+      "kinds": ["boundary", "state"],
+      "evidence": ".gitignore rules for dependencies, build outputs, env files"
+    }
+  ],
+  "excluded": [
+    {"id": "exclude:l3_second_container", "reason": "No additional containers to select"}
+  ],
+  "event_seq_range": [19, 24]
+}

@@ -1,0 +1,25 @@
+{"seq":1,"pass":0,"event":"group_nodes","payload":{"id":"group:bootstrap","label":"C4 generation bootstrap","members":[]}}
+{"seq":2,"pass":1,"event":"add_actor","payload":{"id":"actor:integrator","label":"Connector integrator"}}
+{"seq":3,"pass":1,"event":"add_actor","payload":{"id":"actor:maintainer","label":"Repository maintainer"}}
+{"seq":4,"pass":1,"event":"add_external","payload":{"id":"ext:github","label":"GitHub"}}
+{"seq":5,"pass":1,"event":"add_external","payload":{"id":"ext:npm_ecosystem","label":"Node/npm/Yarn ecosystem"}}
+{"seq":6,"pass":1,"event":"group_nodes","payload":{"id":"group:pass1-runtime","label":"Pass 1 runtime inventory","members":["actor:integrator","actor:maintainer","ext:github","ext:npm_ecosystem"]}}
+{"seq":7,"pass":1,"event":"exclude_candidate","payload":{"id":"exclude:deployable_runtime","reason":"No application source, package manifest, Dockerfile, or CI workflow files present in workspace tree"}}
+{"seq":8,"pass":1,"event":"add_edge","payload":{"id":"edge:maintainer_github","from":"actor:maintainer","to":"ext:github","label":"git operations"}}
+{"seq":9,"pass":1,"event":"freeze_pass","payload":{"pass":1}}
+{"seq":10,"pass":2,"event":"set_system_boundary","payload":{"id":"sys:decreen_connectors","label":"Decreen Connectors"}}
+{"seq":11,"pass":2,"event":"add_container","payload":{"id":"container:local_repo_workspace","label":"Local repository workspace"}}
+{"seq":12,"pass":2,"event":"exclude_candidate","payload":{"id":"exclude:ci_runtime","reason":".github/workflows and CI configs absent from workspace"}}
+{"seq":13,"pass":2,"event":"exclude_candidate","payload":{"id":"exclude:container_image","reason":"No Dockerfile or container build files in workspace"}}
+{"seq":14,"pass":2,"event":"exclude_candidate","payload":{"id":"exclude:npm_package_app","reason":"No package.json or lockfiles present as application entry"}}
+{"seq":15,"pass":2,"event":"add_edge","payload":{"id":"edge:maintainer_workspace","from":"actor:maintainer","to":"container:local_repo_workspace","label":"edit working tree"}}
+{"seq":16,"pass":2,"event":"add_edge","payload":{"id":"edge:workspace_remote","from":"container:local_repo_workspace","to":"ext:github","label":"git remote sync"}}
+{"seq":17,"pass":2,"event":"add_edge","payload":{"id":"edge:integrator_github","from":"actor:integrator","to":"ext:github","label":"obtain repository"}}
+{"seq":18,"pass":2,"event":"freeze_pass","payload":{"pass":2}}
+{"seq":19,"pass":3,"event":"add_component","payload":{"id":"component:git_remote_integration","container_id":"container:local_repo_workspace","label":"Git remote integration","kinds":["integration","routing"]}}
+{"seq":20,"pass":3,"event":"add_component","payload":{"id":"component:repo_ignore_policy","container_id":"container:local_repo_workspace","label":"Repository ignore policy","kinds":["boundary","state"]}}
+{"seq":21,"pass":3,"event":"exclude_candidate","payload":{"id":"exclude:l3_second_container","reason":"Only one L2 container present; Pass 3 selection applies to container:local_repo_workspace only"}}
+{"seq":22,"pass":3,"event":"add_edge","payload":{"id":"edge:git_remote_github","from":"component:git_remote_integration","to":"ext:github","label":"origin remote"}}
+{"seq":23,"pass":3,"event":"add_edge","payload":{"id":"edge:ignore_npm_paths","from":"component:repo_ignore_policy","to":"ext:npm_ecosystem","label":"excludes node_modules and package caches"}}
+{"seq":24,"pass":3,"event":"freeze_pass","payload":{"pass":3}}
+{"seq":25,"pass":4,"event":"freeze_pass","payload":{"pass":4}}
