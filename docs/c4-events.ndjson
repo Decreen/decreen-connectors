@@ -5,3 +5,12 @@
 {"seq":5,"pass":1,"event":"group_nodes","payload":{"id":"group:pass1_runtime","label":"Pass 1 runtime inventory","members":["actor:developer","ext:github_hosting"]}}
 {"seq":6,"pass":1,"event":"add_edge","payload":{"id":"edge:dev_git_remote","from":"actor:developer","to":"ext:github_hosting","label":"git clone/fetch/push"}}
 {"seq":7,"pass":1,"event":"freeze_pass","payload":{"pass":1}}
+{"seq":8,"pass":2,"event":"set_system_boundary","payload":{"id":"sys:decreen_connectors","label":"Decreen connectors (repository)","description":"Software system identified from git remote origin path Decreen/decreen-connectors"}}
+{"seq":9,"pass":2,"event":"add_container","payload":{"id":"container:tracked_sources","label":"Tracked source files","technology":"files in repository root","description":"LICENSE and .gitignore present as tracked artifacts"}}
+{"seq":10,"pass":2,"event":"add_container","payload":{"id":"container:scm_integration","label":"Git / SCM integration","technology":"git","description":".git/config defines origin remote and hooksPath"}}
+{"seq":11,"pass":2,"event":"exclude_candidate","payload":{"kind":"container","id":"candidate:readme_docs","reason":"README and docs/ excluded as documentation-only evidence per source scope policy"}}
+{"seq":12,"pass":2,"event":"exclude_candidate","payload":{"kind":"container","id":"candidate:runtime_services","reason":"No Docker, Kubernetes, workflow, or application manifests found in tree"}}
+{"seq":13,"pass":2,"event":"add_edge","payload":{"id":"edge:dev_maintains_repo","from":"actor:developer","to":"sys:decreen_connectors","label":"maintains repository"}}
+{"seq":14,"pass":2,"event":"add_edge","payload":{"id":"edge:github_hosts_repo","from":"ext:github_hosting","to":"sys:decreen_connectors","label":"hosts remote repository"}}
+{"seq":15,"pass":2,"event":"group_nodes","payload":{"id":"group:l2_inside_system","label":"Inside sys:decreen_connectors","members":["container:tracked_sources","container:scm_integration"]}}
+{"seq":16,"pass":2,"event":"freeze_pass","payload":{"pass":2}}
