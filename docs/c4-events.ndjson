@@ -24,3 +24,5 @@
 {"seq":24,"pass":3,"event":"add_edge","payload":{"id":"edge:origin-in-container","from":"component:origin-link","to":"container:tracked-config","label":"Part of"}}
 {"seq":25,"pass":3,"event":"group_nodes","payload":{"id":"group:pass3-l3","label":"Pass 3 L3 targets","members":["container:tracked-config"]}}
 {"seq":26,"pass":3,"event":"freeze_pass","payload":{"pass":3,"note":"L3 components for tracked-config fixed."}}
+{"seq":27,"pass":4,"event":"refine_label","payload":{"id":"sys:connectors-repo","label":"Decreen Connectors (repository)"}}
+{"seq":28,"pass":4,"event":"freeze_pass","payload":{"pass":4,"note":"Final render frozen; diagrams are projections of the event stream."}}
