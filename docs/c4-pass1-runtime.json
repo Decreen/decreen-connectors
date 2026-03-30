@@ -1,0 +1,19 @@
+{
+  "pass": 1,
+  "actors": [
+    {"id": "actor:developer", "label": "Developer"}
+  ],
+  "externals": [
+    {"id": "ext:npm_registry", "label": "npm package registry"},
+    {"id": "ext:github", "label": "GitHub"},
+    {"id": "ext:apache_license", "label": "Apache License 2.0 terms"}
+  ],
+  "deployables": [],
+  "excluded": [
+    {"id": "candidate:app_deployable", "reason": "No application entrypoint, manifest, or container config present in tracked source; repository is bootstrap-only."}
+  ],
+  "edges": [
+    {"id": "edge:developer_github", "from": "actor:developer", "to": "ext:github", "label": "uses Git remote"}
+  ],
+  "seq_max": 9
+}
