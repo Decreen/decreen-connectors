@@ -1,0 +1,24 @@
+{
+  "pass": 1,
+  "actors": [{ "id": "actor:dev", "label": "Developer" }],
+  "externals": [{ "id": "ext:github", "label": "GitHub (git remote host)" }],
+  "deployables": [],
+  "excluded": [
+    {
+      "id": "candidate:app-runtime",
+      "reason": "No application entrypoints, package manifests, Dockerfiles, or K8s manifests in tracked files; runtime inventory limited to repository metadata."
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:dev-github",
+      "from": "actor:dev",
+      "to": "ext:github",
+      "label": "Git push / pull / browse"
+    }
+  ],
+  "evidence": [
+    "Remote URL https://github.com/Decreen/decreen-connectors in .git/config",
+    "Tracked files: .gitignore, LICENSE, README.md only (plus C4 docs)"
+  ]
+}

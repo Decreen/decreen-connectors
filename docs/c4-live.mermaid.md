@@ -1,6 +1,8 @@
 # Live C4 Preview
 
 ```mermaid
-flowchart TD
-  boot["C4 generation started"]
+flowchart LR
+  actor_dev["Developer"]
+  ext_github["GitHub (git remote host)"]
+  actor_dev -->|"Git push / pull / browse"| ext_github
 ```
