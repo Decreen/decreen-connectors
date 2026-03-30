@@ -1,0 +1,21 @@
+{
+  "pass": 1,
+  "actors": [
+    { "id": "actor:developer", "label": "Developer / maintainer" }
+  ],
+  "externals": [
+    { "id": "ext:github_host", "label": "GitHub (git remote origin)" }
+  ],
+  "deployables": [],
+  "edges": [
+    {
+      "id": "edge:dev_to_github",
+      "from": "actor:developer",
+      "to": "ext:github_host",
+      "label": "git fetch/push"
+    }
+  ],
+  "notes": [
+    "Evidence: .git/config remote URL; workspace file tree lacks src/** and build manifests."
+  ]
+}
