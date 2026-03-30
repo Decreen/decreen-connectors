@@ -1,0 +1,45 @@
+{
+  "pass": 3,
+  "selected_containers": [
+    {
+      "id": "container:repo_workspace",
+      "components": [
+        {
+          "id": "component:workspace_tree_boundary",
+          "label": "Working tree filesystem boundary",
+          "kind": "boundary"
+        },
+        {
+          "id": "component:workspace_staging_store",
+          "label": "Index / staging state (changes tracked)",
+          "kind": "storage"
+        },
+        {
+          "id": "component:workspace_commit_worker",
+          "label": "Commit object packaging",
+          "kind": "worker"
+        }
+      ]
+    },
+    {
+      "id": "container:scm_client",
+      "components": [
+        {
+          "id": "component:scm_remote_integration",
+          "label": "Remote transport to origin",
+          "kind": "integration"
+        },
+        {
+          "id": "component:scm_ref_router",
+          "label": "Branch and ref resolution",
+          "kind": "router"
+        },
+        {
+          "id": "component:scm_sync_pipeline",
+          "label": "Fetch / push synchronization",
+          "kind": "pipeline"
+        }
+      ]
+    }
+  ]
+}

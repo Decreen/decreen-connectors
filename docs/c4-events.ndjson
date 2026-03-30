@@ -15,3 +15,13 @@
 {"seq":15,"pass":2,"event":"add_edge","payload":{"id":"edge:workspace_via_scm","from":"container:repo_workspace","to":"container:scm_client","label":"status / add / commit"}}
 {"seq":16,"pass":2,"event":"group_nodes","payload":{"id":"group:pass2_l2","label":"Pass 2 containers","members":["sys:decreen_connectors","container:repo_workspace","container:scm_client"]}}
 {"seq":17,"pass":2,"event":"freeze_pass","payload":{"pass":2}}
+{"seq":18,"pass":3,"event":"add_component","payload":{"id":"component:workspace_tree_boundary","label":"Working tree filesystem boundary","parent":"container:repo_workspace","kind":"boundary"}}
+{"seq":19,"pass":3,"event":"add_component","payload":{"id":"component:workspace_staging_store","label":"Index / staging state (changes tracked)","parent":"container:repo_workspace","kind":"storage"}}
+{"seq":20,"pass":3,"event":"add_component","payload":{"id":"component:workspace_commit_worker","label":"Commit object packaging","parent":"container:repo_workspace","kind":"worker"}}
+{"seq":21,"pass":3,"event":"add_component","payload":{"id":"component:scm_remote_integration","label":"Remote transport to origin","parent":"container:scm_client","kind":"integration"}}
+{"seq":22,"pass":3,"event":"add_component","payload":{"id":"component:scm_ref_router","label":"Branch and ref resolution","parent":"container:scm_client","kind":"router"}}
+{"seq":23,"pass":3,"event":"add_component","payload":{"id":"component:scm_sync_pipeline","label":"Fetch / push synchronization","parent":"container:scm_client","kind":"pipeline"}}
+{"seq":24,"pass":3,"event":"add_edge","payload":{"id":"edge:remote_to_github","from":"component:scm_remote_integration","to":"ext:github_host","label":"HTTPS / SSH"}}
+{"seq":25,"pass":3,"event":"exclude_candidate","payload":{"candidate":"component:ci_runner","reason":"No CI workflow files in repository tree."}}
+{"seq":26,"pass":3,"event":"group_nodes","payload":{"id":"group:pass3_l3","label":"Pass 3 components","members":["component:workspace_tree_boundary","component:workspace_staging_store","component:workspace_commit_worker","component:scm_remote_integration","component:scm_ref_router","component:scm_sync_pipeline"]}}
+{"seq":27,"pass":3,"event":"freeze_pass","payload":{"pass":3}}
