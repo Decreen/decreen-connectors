@@ -6,3 +6,13 @@
 {"seq":6,"pass":1,"event":"add_edge","payload":{"id":"edge:dev_github","from":"actor:developer","to":"ext:github_remote","label":"push / pull repository"}}
 {"seq":7,"pass":1,"event":"group_nodes","payload":{"id":"group:pass1_runtime","label":"Pass 1 runtime inventory","members":["actor:developer","ext:github_remote"]}}
 {"seq":8,"pass":1,"event":"freeze_pass","payload":{"pass":1}}
+{"seq":9,"pass":2,"event":"set_system_boundary","payload":{"id":"sys:decreen_connectors","label":"Decreen Connectors (repository scope)"}}
+{"seq":10,"pass":2,"event":"add_container","payload":{"id":"container:local_git_repo","label":"Local git repository"}}
+{"seq":11,"pass":2,"event":"add_container","payload":{"id":"container:repo_files","label":"Version-controlled repository files"}}
+{"seq":12,"pass":2,"event":"exclude_candidate","payload":{"id":"exc:no_ci_workflows","reason":"No .github/workflows or other CI config files on origin/main."}}
+{"seq":13,"pass":2,"event":"exclude_candidate","payload":{"id":"exc:no_package_runtime","reason":"No application entrypoint or dependency lockfiles on origin/main."}}
+{"seq":14,"pass":2,"event":"add_edge","payload":{"id":"edge:dev_local_git","from":"actor:developer","to":"container:local_git_repo","label":"git operations"}}
+{"seq":15,"pass":2,"event":"add_edge","payload":{"id":"edge:local_git_github","from":"container:local_git_repo","to":"ext:github_remote","label":"fetch / push"}}
+{"seq":16,"pass":2,"event":"add_edge","payload":{"id":"edge:git_tracks_files","from":"container:local_git_repo","to":"container:repo_files","label":"tracks"}}
+{"seq":17,"pass":2,"event":"group_nodes","payload":{"id":"group:pass2_l2","label":"Pass 2 containers","members":["sys:decreen_connectors","container:local_git_repo","container:repo_files"]}}
+{"seq":18,"pass":2,"event":"freeze_pass","payload":{"pass":2}}

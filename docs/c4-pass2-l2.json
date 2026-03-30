@@ -1,0 +1,24 @@
+{
+  "pass": 2,
+  "system_boundary": {
+    "id": "sys:decreen_connectors",
+    "label": "Decreen Connectors (repository scope)"
+  },
+  "containers": [
+    {
+      "id": "container:local_git_repo",
+      "label": "Local git repository",
+      "evidence": "Git metadata and remotes in .git/config; standard clone/worktree workflow"
+    },
+    {
+      "id": "container:repo_files",
+      "label": "Version-controlled repository files",
+      "evidence": "Tracked tree on origin/main (.gitignore, LICENSE, etc.)"
+    }
+  ],
+  "excluded": [
+    {"id": "exc:no_ci_workflows", "reason": "No .github/workflows or other CI config files on origin/main."},
+    {"id": "exc:no_package_runtime", "reason": "No application entrypoint or dependency lockfiles on origin/main."}
+  ],
+  "seq_range": [9, 18]
+}
