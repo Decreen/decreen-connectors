@@ -5,3 +5,13 @@
 {"seq":5,"pass":1,"event":"add_edge","payload":{"id":"edge:dev-github","from":"actor:dev","to":"ext:github","label":"Git push / pull / browse"}}
 {"seq":6,"pass":1,"event":"group_nodes","payload":{"id":"group:pass1-runtime","label":"Pass 1 runtime inventory","members":["actor:dev","ext:github"]}}
 {"seq":7,"pass":1,"event":"freeze_pass","payload":{"pass":1,"note":"Runtime actors and externals fixed; no deployable application units in snapshot."}}
+{"seq":8,"pass":2,"event":"set_system_boundary","payload":{"id":"sys:connectors-repo","label":"Decreen Connectors (repository snapshot)"}}
+{"seq":9,"pass":2,"event":"add_container","payload":{"id":"container:tracked-config","label":"Tracked configuration and repository metadata"}}
+{"seq":10,"pass":2,"event":"exclude_candidate","payload":{"id":"candidate:container-api","reason":"No HTTP servers, OpenAPI, or route definitions in tracked source."}}
+{"seq":11,"pass":2,"event":"exclude_candidate","payload":{"id":"candidate:container-worker","reason":"No job runners, queues, or worker entrypoints in tracked source."}}
+{"seq":12,"pass":2,"event":"exclude_candidate","payload":{"id":"candidate:container-datastore","reason":"No database clients, migrations, or persistence config in tracked source."}}
+{"seq":13,"pass":2,"event":"add_edge","payload":{"id":"edge:dev-sys","from":"actor:dev","to":"sys:connectors-repo","label":"Maintains / edits"}}
+{"seq":14,"pass":2,"event":"add_edge","payload":{"id":"edge:sys-github","from":"sys:connectors-repo","to":"ext:github","label":"Remote origin / collaboration"}}
+{"seq":15,"pass":2,"event":"add_edge","payload":{"id":"edge:container-in-sys","from":"container:tracked-config","to":"sys:connectors-repo","label":"Contained within"}}
+{"seq":16,"pass":2,"event":"group_nodes","payload":{"id":"group:pass2-l2","label":"Pass 2 containers","members":["sys:connectors-repo","container:tracked-config"]}}
+{"seq":17,"pass":2,"event":"freeze_pass","payload":{"pass":2,"note":"System boundary and single container for in-repo artifacts fixed."}}
