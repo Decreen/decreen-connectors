@@ -1,0 +1,35 @@
+{
+  "pass": 3,
+  "selected_containers": [
+    {
+      "id": "container:repository_tree",
+      "components": [
+        {
+          "id": "component:boundary_gitignore",
+          "label": ".gitignore rules",
+          "kind": "boundary"
+        },
+        {
+          "id": "component:storage_license",
+          "label": "LICENSE text",
+          "kind": "storage"
+        },
+        {
+          "id": "component:integration_gitignore",
+          "label": "VCS ignore integration",
+          "kind": "integration"
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "id": "candidate:l3_second_container",
+      "reason": "Only one deployable container (repository tree) identified in Pass 2"
+    },
+    {
+      "id": "candidate:l3_api_surface",
+      "reason": "No HTTP or RPC server code in repository tree"
+    }
+  ]
+}

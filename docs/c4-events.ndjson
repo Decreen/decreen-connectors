@@ -14,3 +14,11 @@
 {"seq":14,"pass":2,"event":"exclude_candidate","payload":{"id":"candidate:container_application_runtime","reason":"No executable application source or runtime entrypoints in repository tree"}}
 {"seq":15,"pass":2,"event":"group_nodes","payload":{"id":"group:pass2_l2","label":"Pass 2 containers","members":["sys:decreen_connectors","container:repository_tree"]}}
 {"seq":16,"pass":2,"event":"freeze_pass","payload":{"pass":2}}
+{"seq":17,"pass":3,"event":"add_component","payload":{"id":"component:boundary_gitignore","label":".gitignore rules","container":"container:repository_tree","kind":"boundary"}}
+{"seq":18,"pass":3,"event":"add_component","payload":{"id":"component:storage_license","label":"LICENSE text","container":"container:repository_tree","kind":"storage"}}
+{"seq":19,"pass":3,"event":"add_component","payload":{"id":"component:integration_gitignore","label":"VCS ignore integration","container":"container:repository_tree","kind":"integration"}}
+{"seq":20,"pass":3,"event":"add_edge","payload":{"id":"edge:ignore_to_license","from":"component:boundary_gitignore","to":"component:storage_license","label":"co-located artifacts"}}
+{"seq":21,"pass":3,"event":"exclude_candidate","payload":{"id":"candidate:l3_second_container","reason":"Only one deployable container (repository tree) identified in Pass 2"}}
+{"seq":22,"pass":3,"event":"exclude_candidate","payload":{"id":"candidate:l3_api_surface","reason":"No HTTP or RPC server code in repository tree"}}
+{"seq":23,"pass":3,"event":"group_nodes","payload":{"id":"group:pass3_l3","label":"Pass 3 components","members":["component:boundary_gitignore","component:storage_license","component:integration_gitignore"]}}
+{"seq":24,"pass":3,"event":"freeze_pass","payload":{"pass":3}}
