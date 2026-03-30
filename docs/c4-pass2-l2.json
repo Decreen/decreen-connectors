@@ -1,0 +1,29 @@
+{
+  "pass": 2,
+  "system": {
+    "id": "sys:decreen_connectors",
+    "label": "Decreen connectors (repository workspace)"
+  },
+  "containers": [
+    {
+      "id": "container:repo_workspace",
+      "label": "Local repository working tree",
+      "parent": "sys:decreen_connectors"
+    },
+    {
+      "id": "container:scm_client",
+      "label": "Git client + remote sync",
+      "parent": "sys:decreen_connectors"
+    }
+  ],
+  "excluded": [
+    {
+      "candidate": "container:http_api",
+      "reason": "No HTTP server entrypoints or API frameworks found in source tree."
+    },
+    {
+      "candidate": "container:database",
+      "reason": "No database drivers, schemas, or persistence configs in repository files."
+    }
+  ]
+}

@@ -5,3 +5,13 @@
 {"seq":5,"pass":1,"event":"exclude_candidate","payload":{"candidate":"application_runtime","reason":"No application source, package manifests, Docker, CI configs, or IaC files present under workspace (code/config scan)."}}
 {"seq":6,"pass":1,"event":"group_nodes","payload":{"id":"group:pass1_runtime","label":"Pass 1 runtime inventory","members":["actor:developer","ext:github_host"]}}
 {"seq":7,"pass":1,"event":"freeze_pass","payload":{"pass":1}}
+{"seq":8,"pass":2,"event":"set_system_boundary","payload":{"id":"sys:decreen_connectors","label":"Decreen connectors (repository workspace)"}}
+{"seq":9,"pass":2,"event":"add_container","payload":{"id":"container:repo_workspace","label":"Local repository working tree","parent":"sys:decreen_connectors"}}
+{"seq":10,"pass":2,"event":"add_container","payload":{"id":"container:scm_client","label":"Git client + remote sync","parent":"sys:decreen_connectors"}}
+{"seq":11,"pass":2,"event":"exclude_candidate","payload":{"candidate":"container:http_api","reason":"No HTTP server entrypoints or API frameworks found in source tree."}}
+{"seq":12,"pass":2,"event":"exclude_candidate","payload":{"candidate":"container:database","reason":"No database drivers, schemas, or persistence configs in repository files."}}
+{"seq":13,"pass":2,"event":"add_edge","payload":{"id":"edge:dev_uses_workspace","from":"actor:developer","to":"container:repo_workspace","label":"edit / commit"}}
+{"seq":14,"pass":2,"event":"add_edge","payload":{"id":"edge:scm_to_github","from":"container:scm_client","to":"ext:github_host","label":"git protocol"}}
+{"seq":15,"pass":2,"event":"add_edge","payload":{"id":"edge:workspace_via_scm","from":"container:repo_workspace","to":"container:scm_client","label":"status / add / commit"}}
+{"seq":16,"pass":2,"event":"group_nodes","payload":{"id":"group:pass2_l2","label":"Pass 2 containers","members":["sys:decreen_connectors","container:repo_workspace","container:scm_client"]}}
+{"seq":17,"pass":2,"event":"freeze_pass","payload":{"pass":2}}
