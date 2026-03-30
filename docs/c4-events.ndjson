@@ -14,3 +14,13 @@
 {"seq":14,"pass":2,"event":"add_edge","payload":{"id":"edge:github_hosts_repo","from":"ext:github_hosting","to":"sys:decreen_connectors","label":"hosts remote repository"}}
 {"seq":15,"pass":2,"event":"group_nodes","payload":{"id":"group:l2_inside_system","label":"Inside sys:decreen_connectors","members":["container:tracked_sources","container:scm_integration"]}}
 {"seq":16,"pass":2,"event":"freeze_pass","payload":{"pass":2}}
+{"seq":17,"pass":3,"event":"add_component","payload":{"id":"component:tracked_license_and_ignore","label":"License and ignore policy files","parent":"container:tracked_sources","kind":"storage","aspects":["state","subsystems"]}}
+{"seq":18,"pass":3,"event":"add_component","payload":{"id":"component:repository_tree_boundary","label":"Repository file tree boundary","parent":"container:tracked_sources","kind":"boundary","aspects":["routing","state"]}}
+{"seq":19,"pass":3,"event":"add_component","payload":{"id":"component:git_origin_remote","label":"Origin remote configuration","parent":"container:scm_integration","kind":"integration","aspects":["routing","API"]}}
+{"seq":20,"pass":3,"event":"add_component","payload":{"id":"component:git_hooks_path","label":"Git hooks path configuration","parent":"container:scm_integration","kind":"scheduler","aspects":["processing","subsystems"]}}
+{"seq":21,"pass":3,"event":"exclude_candidate","payload":{"kind":"component","id":"candidate:readme_as_component","reason":"README excluded from evidence scope"}}
+{"seq":22,"pass":3,"event":"add_edge","payload":{"id":"edge:hooks_invoke_remote_ops","from":"component:git_hooks_path","to":"component:git_origin_remote","label":"precedes / accompanies git operations"}}
+{"seq":23,"pass":3,"event":"add_edge","payload":{"id":"edge:scm_views_tracked_tree","from":"component:git_origin_remote","to":"component:repository_tree_boundary","label":"versioned tree"}}
+{"seq":24,"pass":3,"event":"freeze_pass","payload":{"pass":3}}
+{"seq":25,"pass":4,"event":"refine_label","payload":{"id":"sys:decreen_connectors","label":"Decreen connectors platform repository"}}
+{"seq":26,"pass":4,"event":"freeze_pass","payload":{"pass":4}}
