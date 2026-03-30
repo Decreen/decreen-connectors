@@ -6,3 +6,11 @@
 {"seq":6,"pass":1,"event":"exclude_candidate","payload":{"id":"candidate:packaged_service","reason":"No application manifests (e.g. pyproject.toml, package.json) or Dockerfiles in repository tree"}}
 {"seq":7,"pass":1,"event":"exclude_candidate","payload":{"id":"candidate:orchestrated_runtime","reason":"No CI workflows, container orchestration, or runtime IaC files in repository tree"}}
 {"seq":8,"pass":1,"event":"freeze_pass","payload":{"pass":1}}
+{"seq":9,"pass":2,"event":"set_system_boundary","payload":{"id":"sys:decreen_connectors","label":"Decreen connectors repository"}}
+{"seq":10,"pass":2,"event":"add_container","payload":{"id":"container:repository_tree","label":"Repository tree","technology":"filesystem / VCS working tree"}}
+{"seq":11,"pass":2,"event":"add_edge","payload":{"id":"edge:github_hosts_system","from":"ext:github","to":"sys:decreen_connectors","label":"hosts"}}
+{"seq":12,"pass":2,"event":"add_edge","payload":{"id":"edge:dev_contributes","from":"actor:developer","to":"sys:decreen_connectors","label":"clone / contribute"}}
+{"seq":13,"pass":2,"event":"exclude_candidate","payload":{"id":"candidate:container_ci_pipeline","reason":"No .github/workflows or other CI config files in repository tree"}}
+{"seq":14,"pass":2,"event":"exclude_candidate","payload":{"id":"candidate:container_application_runtime","reason":"No executable application source or runtime entrypoints in repository tree"}}
+{"seq":15,"pass":2,"event":"group_nodes","payload":{"id":"group:pass2_l2","label":"Pass 2 containers","members":["sys:decreen_connectors","container:repository_tree"]}}
+{"seq":16,"pass":2,"event":"freeze_pass","payload":{"pass":2}}
