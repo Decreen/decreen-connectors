@@ -22,3 +22,5 @@
 {"seq":22,"pass":3,"event":"exclude_candidate","payload":{"id":"candidate:l3_api_surface","reason":"No HTTP or RPC server code in repository tree"}}
 {"seq":23,"pass":3,"event":"group_nodes","payload":{"id":"group:pass3_l3","label":"Pass 3 components","members":["component:boundary_gitignore","component:storage_license","component:integration_gitignore"]}}
 {"seq":24,"pass":3,"event":"freeze_pass","payload":{"pass":3}}
+{"seq":25,"pass":4,"event":"refine_label","payload":{"id":"sys:decreen_connectors","label":"Decreen connectors (VCS-hosted repository)"}}
+{"seq":26,"pass":4,"event":"freeze_pass","payload":{"pass":4}}
