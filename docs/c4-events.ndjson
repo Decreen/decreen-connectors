@@ -4,3 +4,9 @@
 {"seq":4,"pass":1,"event":"add_edge","payload":{"id":"edge:developer_github","from":"actor:developer","to":"ext:github","label":"Uses Git hosting"}}
 {"seq":5,"pass":1,"event":"exclude_candidate","payload":{"id":"candidate:runtime_deployable","reason":"No application entrypoints, services, or deployable artifacts in tracked source; tree is config and legal text only"}}
 {"seq":6,"pass":1,"event":"freeze_pass","payload":{"pass":1}}
+{"seq":7,"pass":2,"event":"set_system_boundary","payload":{"id":"sys:decreen_connectors","label":"Decreen connectors"}}
+{"seq":8,"pass":2,"event":"add_edge","payload":{"id":"edge:sys_github","from":"sys:decreen_connectors","to":"ext:github","label":"Repository hosted on"}}
+{"seq":9,"pass":2,"event":"exclude_candidate","payload":{"id":"candidate:container_api","reason":"No HTTP or API server code in tracked tree"}}
+{"seq":10,"pass":2,"event":"exclude_candidate","payload":{"id":"candidate:container_worker","reason":"No worker or job processor in tracked tree"}}
+{"seq":11,"pass":2,"event":"exclude_candidate","payload":{"id":"candidate:container_database","reason":"No database or persistence layer in tracked tree"}}
+{"seq":12,"pass":2,"event":"freeze_pass","payload":{"pass":2}}

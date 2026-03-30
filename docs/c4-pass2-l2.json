@@ -1,0 +1,30 @@
+{
+  "pass": 2,
+  "system_boundary": {
+    "id": "sys:decreen_connectors",
+    "label": "Decreen connectors"
+  },
+  "containers": [],
+  "edges": [
+    {
+      "id": "edge:sys_github",
+      "from": "sys:decreen_connectors",
+      "to": "ext:github",
+      "label": "Repository hosted on"
+    }
+  ],
+  "excluded": [
+    {
+      "id": "candidate:container_api",
+      "reason": "No HTTP or API server code in tracked tree"
+    },
+    {
+      "id": "candidate:container_worker",
+      "reason": "No worker or job processor in tracked tree"
+    },
+    {
+      "id": "candidate:container_database",
+      "reason": "No database or persistence layer in tracked tree"
+    }
+  ]
+}
