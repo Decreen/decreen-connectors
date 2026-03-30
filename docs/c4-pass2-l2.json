@@ -1,0 +1,19 @@
+{
+  "pass": 2,
+  "system": {"id": "sys:decreen_connectors", "label": "Decreen Connectors"},
+  "containers": [
+    {"id": "container:repo_bootstrap", "label": "Repository bootstrap (config-only)"}
+  ],
+  "excluded": [
+    {"id": "candidate:container_web_app", "reason": "No web server, static host, or frontend entrypoint present in tracked files."},
+    {"id": "candidate:container_api", "reason": "No API server or HTTP handler code present in tracked files."},
+    {"id": "candidate:container_worker", "reason": "No worker, job runner, or scheduler process present in tracked files."},
+    {"id": "candidate:container_database", "reason": "No database, migration, or persistence layer present in tracked files."}
+  ],
+  "edges": [
+    {"id": "edge:bootstrap_github", "from": "container:repo_bootstrap", "to": "ext:github", "label": "source hosted at"},
+    {"id": "edge:bootstrap_license", "from": "container:repo_bootstrap", "to": "ext:apache_license", "label": "distributes under"},
+    {"id": "edge:developer_system", "from": "actor:developer", "to": "sys:decreen_connectors", "label": "maintains"}
+  ],
+  "seq_max": 19
+}

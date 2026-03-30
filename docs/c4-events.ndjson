@@ -7,3 +7,13 @@
 {"seq":7,"pass":1,"event":"group_nodes","payload":{"id":"group:pass1_runtime","label":"Pass 1 runtime inventory","members":["actor:developer","ext:npm_registry","ext:github","ext:apache_license"]}}
 {"seq":8,"pass":1,"event":"add_edge","payload":{"id":"edge:developer_github","from":"actor:developer","to":"ext:github","label":"uses Git remote"}}
 {"seq":9,"pass":1,"event":"freeze_pass","payload":{"pass":1,"note":"Runtime inventory from .gitignore, LICENSE, and .git/config only."}}
+{"seq":10,"pass":2,"event":"set_system_boundary","payload":{"id":"sys:decreen_connectors","label":"Decreen Connectors"}}
+{"seq":11,"pass":2,"event":"add_container","payload":{"id":"container:repo_bootstrap","label":"Repository bootstrap (config-only)"}}
+{"seq":12,"pass":2,"event":"exclude_candidate","payload":{"id":"candidate:container_web_app","reason":"No web server, static host, or frontend entrypoint present in tracked files."}}
+{"seq":13,"pass":2,"event":"exclude_candidate","payload":{"id":"candidate:container_api","reason":"No API server or HTTP handler code present in tracked files."}}
+{"seq":14,"pass":2,"event":"exclude_candidate","payload":{"id":"candidate:container_worker","reason":"No worker, job runner, or scheduler process present in tracked files."}}
+{"seq":15,"pass":2,"event":"exclude_candidate","payload":{"id":"candidate:container_database","reason":"No database, migration, or persistence layer present in tracked files."}}
+{"seq":16,"pass":2,"event":"add_edge","payload":{"id":"edge:bootstrap_github","from":"container:repo_bootstrap","to":"ext:github","label":"source hosted at"}}
+{"seq":17,"pass":2,"event":"add_edge","payload":{"id":"edge:bootstrap_license","from":"container:repo_bootstrap","to":"ext:apache_license","label":"distributes under"}}
+{"seq":18,"pass":2,"event":"add_edge","payload":{"id":"edge:developer_system","from":"actor:developer","to":"sys:decreen_connectors","label":"maintains"}}
+{"seq":19,"pass":2,"event":"freeze_pass","payload":{"pass":2,"note":"L2 reflects config-only repository; single container inside system boundary."}}
