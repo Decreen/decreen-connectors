@@ -1,0 +1,51 @@
+{
+  "pass": 3,
+  "selected_containers": [
+    {
+      "id": "container:tracked_sources",
+      "aspects_satisfied": ["state", "routing", "subsystems"],
+      "components": [
+        {
+          "id": "component:tracked_license_and_ignore",
+          "kind": "storage",
+          "aspects": ["state", "subsystems"]
+        },
+        {
+          "id": "component:repository_tree_boundary",
+          "kind": "boundary",
+          "aspects": ["routing", "state"]
+        }
+      ]
+    },
+    {
+      "id": "container:scm_integration",
+      "aspects_satisfied": ["API", "routing", "processing", "subsystems"],
+      "components": [
+        {
+          "id": "component:git_origin_remote",
+          "kind": "integration",
+          "aspects": ["routing", "API"]
+        },
+        {
+          "id": "component:git_hooks_path",
+          "kind": "scheduler",
+          "aspects": ["processing", "subsystems"]
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:hooks_invoke_remote_ops",
+      "from": "component:git_hooks_path",
+      "to": "component:git_origin_remote",
+      "label": "precedes / accompanies git operations"
+    },
+    {
+      "id": "edge:scm_views_tracked_tree",
+      "from": "component:git_origin_remote",
+      "to": "component:repository_tree_boundary",
+      "label": "versioned tree"
+    }
+  ]
+}

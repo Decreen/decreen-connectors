@@ -1,0 +1,46 @@
+{
+  "pass": 2,
+  "system": {
+    "id": "sys:decreen_connectors",
+    "label": "Decreen connectors (repository)",
+    "evidence": [".git/config remote origin url path Decreen/decreen-connectors"]
+  },
+  "containers": [
+    {
+      "id": "container:tracked_sources",
+      "label": "Tracked source files",
+      "evidence": ["LICENSE", ".gitignore"]
+    },
+    {
+      "id": "container:scm_integration",
+      "label": "Git / SCM integration",
+      "evidence": [".git/config core.hooksPath", ".git/config remote origin"]
+    }
+  ],
+  "excluded": [
+    {
+      "kind": "container",
+      "id": "candidate:readme_docs",
+      "reason": "Documentation paths excluded as architecture evidence"
+    },
+    {
+      "kind": "container",
+      "id": "candidate:runtime_services",
+      "reason": "No runtime orchestration or app manifests in tree"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:dev_maintains_repo",
+      "from": "actor:developer",
+      "to": "sys:decreen_connectors",
+      "label": "maintains repository"
+    },
+    {
+      "id": "edge:github_hosts_repo",
+      "from": "ext:github_hosting",
+      "to": "sys:decreen_connectors",
+      "label": "hosts remote repository"
+    }
+  ]
+}

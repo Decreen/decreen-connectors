@@ -1,0 +1,26 @@
+{"seq":1,"pass":0,"event":"group_nodes","payload":{"id":"group:bootstrap","label":"C4 generation bootstrap","members":[]}}
+{"seq":2,"pass":1,"event":"add_actor","payload":{"id":"actor:developer","label":"Developer"}}
+{"seq":3,"pass":1,"event":"add_external","payload":{"id":"ext:github_hosting","label":"GitHub","description":"Git remote host from .git/config origin URL"}}
+{"seq":4,"pass":1,"event":"exclude_candidate","payload":{"kind":"deployable","reason":"No application entrypoints, manifests, Dockerfiles, or CI workflow files present in repository tree beyond LICENSE, .gitignore, and docs/"}}
+{"seq":5,"pass":1,"event":"group_nodes","payload":{"id":"group:pass1_runtime","label":"Pass 1 runtime inventory","members":["actor:developer","ext:github_hosting"]}}
+{"seq":6,"pass":1,"event":"add_edge","payload":{"id":"edge:dev_git_remote","from":"actor:developer","to":"ext:github_hosting","label":"git clone/fetch/push"}}
+{"seq":7,"pass":1,"event":"freeze_pass","payload":{"pass":1}}
+{"seq":8,"pass":2,"event":"set_system_boundary","payload":{"id":"sys:decreen_connectors","label":"Decreen connectors (repository)","description":"Software system identified from git remote origin path Decreen/decreen-connectors"}}
+{"seq":9,"pass":2,"event":"add_container","payload":{"id":"container:tracked_sources","label":"Tracked source files","technology":"files in repository root","description":"LICENSE and .gitignore present as tracked artifacts"}}
+{"seq":10,"pass":2,"event":"add_container","payload":{"id":"container:scm_integration","label":"Git / SCM integration","technology":"git","description":".git/config defines origin remote and hooksPath"}}
+{"seq":11,"pass":2,"event":"exclude_candidate","payload":{"kind":"container","id":"candidate:readme_docs","reason":"README and docs/ excluded as documentation-only evidence per source scope policy"}}
+{"seq":12,"pass":2,"event":"exclude_candidate","payload":{"kind":"container","id":"candidate:runtime_services","reason":"No Docker, Kubernetes, workflow, or application manifests found in tree"}}
+{"seq":13,"pass":2,"event":"add_edge","payload":{"id":"edge:dev_maintains_repo","from":"actor:developer","to":"sys:decreen_connectors","label":"maintains repository"}}
+{"seq":14,"pass":2,"event":"add_edge","payload":{"id":"edge:github_hosts_repo","from":"ext:github_hosting","to":"sys:decreen_connectors","label":"hosts remote repository"}}
+{"seq":15,"pass":2,"event":"group_nodes","payload":{"id":"group:l2_inside_system","label":"Inside sys:decreen_connectors","members":["container:tracked_sources","container:scm_integration"]}}
+{"seq":16,"pass":2,"event":"freeze_pass","payload":{"pass":2}}
+{"seq":17,"pass":3,"event":"add_component","payload":{"id":"component:tracked_license_and_ignore","label":"License and ignore policy files","parent":"container:tracked_sources","kind":"storage","aspects":["state","subsystems"]}}
+{"seq":18,"pass":3,"event":"add_component","payload":{"id":"component:repository_tree_boundary","label":"Repository file tree boundary","parent":"container:tracked_sources","kind":"boundary","aspects":["routing","state"]}}
+{"seq":19,"pass":3,"event":"add_component","payload":{"id":"component:git_origin_remote","label":"Origin remote configuration","parent":"container:scm_integration","kind":"integration","aspects":["routing","API"]}}
+{"seq":20,"pass":3,"event":"add_component","payload":{"id":"component:git_hooks_path","label":"Git hooks path configuration","parent":"container:scm_integration","kind":"scheduler","aspects":["processing","subsystems"]}}
+{"seq":21,"pass":3,"event":"exclude_candidate","payload":{"kind":"component","id":"candidate:readme_as_component","reason":"README excluded from evidence scope"}}
+{"seq":22,"pass":3,"event":"add_edge","payload":{"id":"edge:hooks_invoke_remote_ops","from":"component:git_hooks_path","to":"component:git_origin_remote","label":"precedes / accompanies git operations"}}
+{"seq":23,"pass":3,"event":"add_edge","payload":{"id":"edge:scm_views_tracked_tree","from":"component:git_origin_remote","to":"component:repository_tree_boundary","label":"versioned tree"}}
+{"seq":24,"pass":3,"event":"freeze_pass","payload":{"pass":3}}
+{"seq":25,"pass":4,"event":"refine_label","payload":{"id":"sys:decreen_connectors","label":"Decreen connectors platform repository"}}
+{"seq":26,"pass":4,"event":"freeze_pass","payload":{"pass":4}}
