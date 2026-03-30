@@ -1,0 +1,28 @@
+{"seq":1,"pass":0,"event":"group_nodes","payload":{"id":"group:bootstrap","label":"C4 generation bootstrap","members":[]}}
+{"seq":2,"pass":1,"event":"add_actor","payload":{"id":"actor:dev","label":"Developer"}}
+{"seq":3,"pass":1,"event":"add_external","payload":{"id":"ext:github","label":"GitHub (git remote host)"}}
+{"seq":4,"pass":1,"event":"exclude_candidate","payload":{"id":"candidate:app-runtime","reason":"No application entrypoints, package manifests, Dockerfiles, or K8s manifests in tracked files; runtime inventory limited to repository metadata."}}
+{"seq":5,"pass":1,"event":"add_edge","payload":{"id":"edge:dev-github","from":"actor:dev","to":"ext:github","label":"Git push / pull / browse"}}
+{"seq":6,"pass":1,"event":"group_nodes","payload":{"id":"group:pass1-runtime","label":"Pass 1 runtime inventory","members":["actor:dev","ext:github"]}}
+{"seq":7,"pass":1,"event":"freeze_pass","payload":{"pass":1,"note":"Runtime actors and externals fixed; no deployable application units in snapshot."}}
+{"seq":8,"pass":2,"event":"set_system_boundary","payload":{"id":"sys:connectors-repo","label":"Decreen Connectors (repository snapshot)"}}
+{"seq":9,"pass":2,"event":"add_container","payload":{"id":"container:tracked-config","label":"Tracked configuration and repository metadata"}}
+{"seq":10,"pass":2,"event":"exclude_candidate","payload":{"id":"candidate:container-api","reason":"No HTTP servers, OpenAPI, or route definitions in tracked source."}}
+{"seq":11,"pass":2,"event":"exclude_candidate","payload":{"id":"candidate:container-worker","reason":"No job runners, queues, or worker entrypoints in tracked source."}}
+{"seq":12,"pass":2,"event":"exclude_candidate","payload":{"id":"candidate:container-datastore","reason":"No database clients, migrations, or persistence config in tracked source."}}
+{"seq":13,"pass":2,"event":"add_edge","payload":{"id":"edge:dev-sys","from":"actor:dev","to":"sys:connectors-repo","label":"Maintains / edits"}}
+{"seq":14,"pass":2,"event":"add_edge","payload":{"id":"edge:sys-github","from":"sys:connectors-repo","to":"ext:github","label":"Remote origin / collaboration"}}
+{"seq":15,"pass":2,"event":"add_edge","payload":{"id":"edge:container-in-sys","from":"container:tracked-config","to":"sys:connectors-repo","label":"Contained within"}}
+{"seq":16,"pass":2,"event":"group_nodes","payload":{"id":"group:pass2-l2","label":"Pass 2 containers","members":["sys:connectors-repo","container:tracked-config"]}}
+{"seq":17,"pass":2,"event":"freeze_pass","payload":{"pass":2,"note":"System boundary and single container for in-repo artifacts fixed."}}
+{"seq":18,"pass":3,"event":"exclude_candidate","payload":{"id":"candidate:l3-extra-containers","reason":"Only one L2 container exists in stream; Pass 3 selection is that container only (≤4 cap)."}}
+{"seq":19,"pass":3,"event":"add_component","payload":{"id":"component:ignore-rules","container":"container:tracked-config","label":"Path ignore rules","kind":"boundary"}}
+{"seq":20,"pass":3,"event":"add_component","payload":{"id":"component:origin-link","container":"container:tracked-config","label":"Git remote origin configuration","kind":"integration"}}
+{"seq":21,"pass":3,"event":"add_edge","payload":{"id":"edge:dev-ignore","from":"actor:dev","to":"component:ignore-rules","label":"Edits ignore patterns"}}
+{"seq":22,"pass":3,"event":"add_edge","payload":{"id":"edge:origin-github","from":"component:origin-link","to":"ext:github","label":"Remote URL / fetch target"}}
+{"seq":23,"pass":3,"event":"add_edge","payload":{"id":"edge:ignore-in-container","from":"component:ignore-rules","to":"container:tracked-config","label":"Part of"}}
+{"seq":24,"pass":3,"event":"add_edge","payload":{"id":"edge:origin-in-container","from":"component:origin-link","to":"container:tracked-config","label":"Part of"}}
+{"seq":25,"pass":3,"event":"group_nodes","payload":{"id":"group:pass3-l3","label":"Pass 3 L3 targets","members":["container:tracked-config"]}}
+{"seq":26,"pass":3,"event":"freeze_pass","payload":{"pass":3,"note":"L3 components for tracked-config fixed."}}
+{"seq":27,"pass":4,"event":"refine_label","payload":{"id":"sys:connectors-repo","label":"Decreen Connectors (repository)"}}
+{"seq":28,"pass":4,"event":"freeze_pass","payload":{"pass":4,"note":"Final render frozen; diagrams are projections of the event stream."}}

@@ -1,0 +1,17 @@
+{
+  "pass": 2,
+  "system": { "id": "sys:connectors-repo", "label": "Decreen Connectors (repository snapshot)" },
+  "containers": [
+    { "id": "container:tracked-config", "label": "Tracked configuration and repository metadata" }
+  ],
+  "excluded": [
+    { "id": "candidate:container-api", "reason": "No HTTP servers, OpenAPI, or route definitions in tracked source." },
+    { "id": "candidate:container-worker", "reason": "No job runners, queues, or worker entrypoints in tracked source." },
+    { "id": "candidate:container-datastore", "reason": "No database clients, migrations, or persistence config in tracked source." }
+  ],
+  "edges": [
+    { "id": "edge:dev-sys", "from": "actor:dev", "to": "sys:connectors-repo", "label": "Maintains / edits" },
+    { "id": "edge:sys-github", "from": "sys:connectors-repo", "to": "ext:github", "label": "Remote origin / collaboration" },
+    { "id": "edge:container-in-sys", "from": "container:tracked-config", "to": "sys:connectors-repo", "label": "Contained within" }
+  ]
+}

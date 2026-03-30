@@ -1,0 +1,32 @@
+{
+  "pass": 3,
+  "selected_containers": ["container:tracked-config"],
+  "components": [
+    {
+      "id": "component:ignore-rules",
+      "container": "container:tracked-config",
+      "label": "Path ignore rules",
+      "kind": "boundary",
+      "aspects": ["routing", "state"]
+    },
+    {
+      "id": "component:origin-link",
+      "container": "container:tracked-config",
+      "label": "Git remote origin configuration",
+      "kind": "integration",
+      "aspects": ["routing", "integration"]
+    }
+  ],
+  "excluded": [
+    {
+      "id": "candidate:l3-extra-containers",
+      "reason": "Only one L2 container exists in stream; Pass 3 selection is that container only (≤4 cap)."
+    }
+  ],
+  "edges": [
+    { "id": "edge:dev-ignore", "from": "actor:dev", "to": "component:ignore-rules", "label": "Edits ignore patterns" },
+    { "id": "edge:origin-github", "from": "component:origin-link", "to": "ext:github", "label": "Remote URL / fetch target" },
+    { "id": "edge:ignore-in-container", "from": "component:ignore-rules", "to": "container:tracked-config", "label": "Part of" },
+    { "id": "edge:origin-in-container", "from": "component:origin-link", "to": "container:tracked-config", "label": "Part of" }
+  ]
+}
