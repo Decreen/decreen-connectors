@@ -1,0 +1,27 @@
+{
+  "pass": 1,
+  "actors": [],
+  "externals": [
+    {
+      "id": "ext:npm_ecosystem",
+      "label": "npm / Node.js package ecosystem",
+      "evidence": [".gitignore references node_modules, npm, yarn, vite, Next.js, etc."]
+    }
+  ],
+  "deployables": [],
+  "excludes": [
+    {
+      "id": "candidate:deployable_units",
+      "reason": "No Dockerfile, compose, Kubernetes manifests, package.json, pyproject.toml, go.mod, or other application entrypoints in workspace tree"
+    },
+    {
+      "id": "candidate:runtime_http_clients",
+      "reason": "No source files present declaring HTTP clients, base URLs, or outbound API integrations"
+    },
+    {
+      "id": "candidate:ci_runtime",
+      "reason": "No .github/workflows or other CI configuration files in repository"
+    }
+  ],
+  "seq_range": [2, 7]
+}
