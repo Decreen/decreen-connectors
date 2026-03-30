@@ -1,0 +1,19 @@
+{
+  "pass": 1,
+  "evidence_scope": "origin/main tracked tree and .git/config; docs/** excluded as architecture evidence per policy",
+  "actors": [
+    {"id": "actor:developer", "label": "Developer", "evidence": "Human maintainer implied by git workflow and dev-tool ignore rules in .gitignore"}
+  ],
+  "externals": [
+    {"id": "ext:github_remote", "label": "GitHub (git origin)", "evidence": "remote origin URL in .git/config"}
+  ],
+  "deployables": [],
+  "excluded": [
+    {"id": "exc:no_container_runtime", "reason": "No Dockerfile, Compose, or Kubernetes manifests in tracked files on origin/main."},
+    {"id": "exc:no_app_manifest", "reason": "No package.json, pyproject.toml, or other application manifest on origin/main."}
+  ],
+  "edges": [
+    {"id": "edge:dev_github", "from": "actor:developer", "to": "ext:github_remote", "label": "push / pull repository"}
+  ],
+  "seq_range": [2, 8]
+}
