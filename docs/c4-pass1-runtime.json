@@ -1,0 +1,21 @@
+{
+  "pass": 1,
+  "actors": [{ "id": "actor:developer", "label": "Developer" }],
+  "externals": [{ "id": "ext:github", "label": "GitHub" }],
+  "deployables": [],
+  "edges": [
+    {
+      "id": "edge:developer_github",
+      "from": "actor:developer",
+      "to": "ext:github",
+      "label": "Uses Git hosting"
+    }
+  ],
+  "excluded": [
+    {
+      "id": "candidate:runtime_deployable",
+      "reason": "No application entrypoints, services, or deployable artifacts in tracked source; tree is config and legal text only"
+    }
+  ],
+  "evidence": [".git/config remote URL", "git ls-tree HEAD file list"]
+}
