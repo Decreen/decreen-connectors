@@ -1,0 +1,28 @@
+{
+  "pass": 1,
+  "actors": [
+    {"id": "actor:developer", "label": "Developer", "evidence": ["human operator implied by git workflow"]}
+  ],
+  "externals": [
+    {
+      "id": "ext:github_hosting",
+      "label": "GitHub",
+      "evidence": [".git/config remote origin url https://github.com/Decreen/decreen-connectors"]
+    }
+  ],
+  "deployables": [],
+  "excluded": [
+    {
+      "kind": "deployable",
+      "reason": "No application entrypoints, manifests, Dockerfiles, or CI workflow files in tree"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:dev_git_remote",
+      "from": "actor:developer",
+      "to": "ext:github_hosting",
+      "label": "git clone/fetch/push"
+    }
+  ]
+}
