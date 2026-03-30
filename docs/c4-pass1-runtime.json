@@ -1,0 +1,20 @@
+{
+  "pass": 1,
+  "actors": [
+    { "id": "actor:developer", "label": "Developer" }
+  ],
+  "externals": [
+    { "id": "ext:github", "label": "GitHub" }
+  ],
+  "deployables": [],
+  "excluded": [
+    {
+      "id": "candidate:packaged_service",
+      "reason": "No application manifests (e.g. pyproject.toml, package.json) or Dockerfiles in repository tree"
+    },
+    {
+      "id": "candidate:orchestrated_runtime",
+      "reason": "No CI workflows, container orchestration, or runtime IaC files in repository tree"
+    }
+  ]
+}

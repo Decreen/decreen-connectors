@@ -1,0 +1,24 @@
+{
+  "pass": 2,
+  "system_boundary": {
+    "id": "sys:decreen_connectors",
+    "label": "Decreen connectors repository"
+  },
+  "containers": [
+    {
+      "id": "container:repository_tree",
+      "label": "Repository tree",
+      "technology": "filesystem / VCS working tree"
+    }
+  ],
+  "excluded": [
+    {
+      "id": "candidate:container_ci_pipeline",
+      "reason": "No .github/workflows or other CI config files in repository tree"
+    },
+    {
+      "id": "candidate:container_application_runtime",
+      "reason": "No executable application source or runtime entrypoints in repository tree"
+    }
+  ]
+}
